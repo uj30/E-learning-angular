@@ -1,0 +1,107 @@
+.namecolor{
+    color: blue !important;
+}
+
+/* Change */
+
+.upper-header {
+    padding:5px;
+    background:coral;
+    color: coral;
+    margin: 0 !important;
+    padding: 4px !important
+}
+/* #head */
+
+/* Increase the font size of the h1 element */
+.header h1 {
+    font-size: 6px;
+}
+.header{
+    background-color:grey !important;
+    border-radius: 0 !important;
+
+}
+.dropdown-menu > li > a{
+    color: black !important
+}
+.icon-bar{
+    background: white !important;
+}
+.w3-agileits-subscribe-form {
+    margin: 1em 0;
+}
+.w3-agileits-subscribe-form input[type="text"] {
+    display: inline-block;
+    background:#ececec;
+    width: 73%;
+    outline: none;
+    padding: 1em;
+    font-size: .875em;
+    color: #999999;
+    border: solid 2px #ececec;
+}
+button.btn1 {
+    color: #FFFFFF;
+    font-size: .9em;
+    border: solid 1px ;
+    padding: 1em 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+button.btn1:hover{
+    background: none;
+    border: solid 1px #ef543b;
+    color:#ef543b;
+}
+.footer-top h3 {
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: coral;
+	margin: 0 0 1em;
+}
+.footer-top p {
+    font-size: 14px;
+    color: #ffffff;
+    margin:0;
+    line-height: 28px;
+}
+p.footer-gd a {
+    color: #ef543b;
+}
+.footer-top {
+    background-image: url('/../../assets/images/footer.jpg');
+    /* background: url(https://www.google.co.in/imgres?imgurl=http%3A%2F%2Fwww.webaward.org%2Fimages%2Fhtmltoimage%2Fwww.masterclass.com.jpeg&imgrefurl=http%3A%2F%2Fwww.webaward.org%2Fwinners_detail.asp%3Fyr%3Dall%26award_level%3Dbest%26category%3DEducation&docid=c8CG_OGqOLItJM&tbnid=nydGL17834BZdM%3A&vet=12ahUKEwjwzMiWv6zaAhVEq48KHemFD4A4ZBAzKAgwCHoECAAQCQ..i&w=342&h=332&bih=637&biw=1366&q=education%20website%20images&ved=2ahUKEwjwzMiWv6zaAhVEq48KHemFD4A4ZBAzKAgwCHoECAAQCQ&iact=mrc&uact=8) no-repeat 0px 0px; */
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    padding: 5em 0;
+}
+agile_header_social li
+{
+    display: inline-block;
+}
+.backg
+{
+    background-image: url('/../../assets/images/pic.jpg');
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+}
+
+.background{
+    background-color: aqua;
+}
+.buttonback
+{
+    background-color: white;
+}

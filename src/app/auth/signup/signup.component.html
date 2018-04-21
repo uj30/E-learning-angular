@@ -1,0 +1,65 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ </head>
+ 
+   <div>
+     <nav class="navbar navbar-inverse">
+         <div class="container-fluid">
+           <div class="navbar-header">
+           <a class="navbar-brand">E-learning</a>
+           </div>
+           <ul class="nav navbar-nav">
+           <li><a routerLink='/home'>Home</a></li>
+           <li ><a routerLink='/courses'>Courses</a></li>
+           
+           </ul>
+           <ul class="nav navbar-nav navbar-right">
+           <li class="active"><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+           <li ><a routerLink="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+           </ul>
+         </div>
+         </nav>
+       </div>
+ 
+ <!-- App component change -->
+
+<div *ngIf="show">
+<form>
+  <div class="container">
+    <h1>Register</h1>
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" [(ngModel)]="name" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" [(ngModel)]="user" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw"  [(ngModel)]="pwd" required>
+
+    <div style="text-align:center">
+      <input type="radio" name="radio" value="instructor" [(ngModel)]="type_of_user" required> Instructor &ensp;&ensp;
+      <input type="radio" name="radio" value="student" [(ngModel)]="type_of_user">Student
+      <br>
+      </div>
+
+    <hr>
+
+    <button type="submit" class="registerbtn" (click)="getregister()">Register</button>
+  </div>
+</form>
+  <div class="container signin">
+    <p>Already have an account? <a routerLink='/signin'>Sign in</a>.</p>
+  </div>
+
+</div>
+
+<div *ngIf = "!show">
+  <h1 style="margin-top:19%;margin-left:33%;font-size: 40px;color:orange">You are registered.</h1>
+</div>
+

@@ -1,0 +1,157 @@
+body{
+    font-family: arial,sans-serif;
+    
+}
+.header {
+    padding:30px;
+    background:coral;
+    color: white;
+}
+#head
+{
+    opacity: 0.8;
+}
+
+/* Increase the font size of the h1 element */
+.header h1 {
+    font-size: 5px;
+    
+}
+
+*{
+    padding: 0px;
+    margin: 0px;
+    
+}
+#maindiv{
+    width: 100%;
+    height: 600px;
+    background: url(../images/b1.jpg)no-repeat center;
+background-size: cover;
+}
+#Navdiv{
+    opacity: 0.4;
+    filter: (opacity=70);
+}
+#Navdiv ul{
+    width: 100%;
+    height: 80px;
+    background: black;
+    line-height: 80px;
+    color: white;
+    margin-right: 15px;
+}
+#Navdiv ul a{
+    text-decoration: none;
+    color:white;
+    padding: 20px;
+}
+#Navdiv ul li{
+    list-style-type: none;
+    display: inline-block;
+    float: right;
+    
+}
+#Navdiv ul li:hover{
+   background: coral; 
+    transition: all 0.40s;
+}
+
+#Navdiv h1{
+    width: 260px;
+    float: left;
+    cursor: pointer;
+    margin-left: 15px;
+}
+.thumbnail
+{
+    padding: 10px;
+}
+.caption p
+{
+    text-align: center;
+}
+.contact {
+    background: url(../images/c1.jpg) no-repeat 0px 0px;
+    background-size: cover;
+}
+.contact-form {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.info ul {
+    padding: 0;
+    list-style: none;
+}
+.contact-form p {
+    color: #999;
+    margin: 1em 0 3em;
+}
+.form-left {
+    padding-left: 0;
+}
+
+
+<!--footer-->
+.w3-agileits-subscribe-form {
+    margin: 1em 0;
+}
+.w3-agileits-subscribe-form input[type="text"] {
+    display: inline-block;
+    background:#ececec;
+    width: 73%;
+    outline: none;
+    padding: 1em;
+    font-size: .875em;
+    color: #999999;
+    border: solid 2px #ececec;
+}
+button.btn1 {
+    color: #FFFFFF;
+    font-size: .9em;
+    border: solid 1px ;
+    padding: 1em 1em;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+}
+button.btn1:hover{
+    background: none;
+    border: solid 1px #ef543b;
+    color:#ef543b;
+}
+.footer-top h3 {
+    font-size: 1.8em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: coral;
+	margin: 0 0 1em;
+}
+.footer-top p {
+    font-size: 14px;
+    color: #ffffff;
+    margin:0;
+    line-height: 28px;
+}
+p.footer-gd a {
+    color: #ef543b;
+}
+.footer-top {
+    background: url(../images/footer.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    background-attachment: fixed;
+    padding: 5em 0;
+}
+agile_header_social li
+{
+    display: inline-block;
+}

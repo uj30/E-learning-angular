@@ -1,0 +1,15 @@
+.color{
+background-color: bisque
+}
+.color1{
+    background-color:rgb(247, 219, 144) 
+}
+.design{
+    background-color:#FFA500;
+    height: 30px;
+    width: 100px;
+}
+img{
+    margin-left:35%;
+    box-shadow: 0px 0px 10px  gray;
+}
