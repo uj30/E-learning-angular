@@ -2,31 +2,39 @@ import { Injectable } from '@angular/core';
 import { Http,Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Options } from 'selenium-webdriver/ie';
+import { CookieService } from '../cookie.service';
 
 @Injectable()
 export class AuthenticationService {
 
-  // change
 private isUserLoggedIn;
-  //change
 
-  constructor(private http:Http) {
+constructor(private http:Http,private _cookieService:CookieService) 
+{
+// this.isUserLoggedIn=false;
+this.isUserLoggedIn=JSON.parse(localStorage.getItem('loggedIn') || 'false');
 //change
-this.isUserLoggedIn=false;
-//change
-   }
+ }
 
-   //change
    setUserLoggedIn()
    {
-     this.isUserLoggedIn=true;
-   }
-   getUserLoggedIn(){
-     return this.isUserLoggedIn;
-   }
-   //change
+  
+    //  let a=this._cookieService.get("isLogedIn");
+    //  console.log(a);
+    //  this.isUserLoggedIn=a?true:false;
+    //  console.log(this.isUserLoggedIn);
 
-  //login
+    this.isUserLoggedIn=true
+    localStorage.setItem('loggedIn','true')
+    //change
+   }
+
+   getUserLoggedIn(){
+    //  return this.isUserLoggedIn;
+
+    return JSON.parse(localStorage.getItem('loggedIn') || this.getUserLoggedIn.toString())
+   }
+  
   getlogin(data){
     var status=0;
     return this.http.get('http://localhost:3000/api/login')
@@ -51,7 +59,5 @@ this.isUserLoggedIn=false;
          }
         
     });
-
   }
-
 }

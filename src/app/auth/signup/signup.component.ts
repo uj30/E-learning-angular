@@ -32,9 +32,19 @@ export class SignupComponent implements OnInit {
       }
       else
       {
-    this._authService.getregister({name:this.name,user:this.user, pwd:this.pwd,type_of_user:this.type_of_user});
-    this.show=false;
-      }
+  this._authService.getregister({name:this.name,user:this.user, pwd:this.pwd,type_of_user:this.type_of_user}).
+  then((res)=>{
+   var res1 = res.json();
+    console.log(res1.msg);
+    if(res1.msg=="Fail")
+    { alert("Try Different Email");
+    }
+    else{ this.show=false;}
+   
+  });
+ 
+}
+    
   }
   ngOnInit() {
   }

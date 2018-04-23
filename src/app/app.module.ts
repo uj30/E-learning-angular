@@ -12,6 +12,8 @@ import { HttpModule } from '@angular/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthguardGuard } from './authguard.guard';
+import { AuthenticationService } from '../app/auth/signin/auth.service'; 
+import { CookieService } from './auth/cookie.service';
 
 const rt: Routes = [
   {path:'signup',component: SignupComponent },
@@ -37,7 +39,7 @@ const rt: Routes = [
     HttpModule,
     RouterModule.forRoot(rt)
   ],
-  providers: [],
+  providers: [AuthguardGuard,AuthenticationService,CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

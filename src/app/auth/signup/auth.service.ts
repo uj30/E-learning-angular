@@ -10,9 +10,11 @@ export class AuthenticationService {
  
    getregister(user) {
        console.log(user);
-       this.http.post('http://localhost:3000/api/signup',user)
+     return  this.http.post('http://localhost:3000/api/signup',user)
       .toPromise()
-      .then((res)=> console.log(res));
+      .then((res)=> {
+        return res;
+      });
 
   }
 
