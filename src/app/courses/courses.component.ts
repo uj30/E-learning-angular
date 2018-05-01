@@ -1,17 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../auth/signin/auth.service'; 
+import { Router } from '@angular/router';
+import { CookieService } from '../auth/cookie.service';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
-  styleUrls: ['./courses.component.css']
+  styleUrls: ['./courses.component.css'],
+  providers:[ AuthenticationService ]
 })
 export class CoursesComponent implements OnInit {
+  name;
   show:Boolean;
   html:Boolean;
   angular:Boolean;
   node:Boolean;
   deep:Boolean;
-  constructor() {
+  constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {
     this.show=true;
     this.html=false;
     this.angular=false;
@@ -60,6 +65,10 @@ export class CoursesComponent implements OnInit {
      this.deep=false;
    }
   ngOnInit() {
+    if(this._cookieService.get("isLogedIn")=="yes"){
+      this.name=this._cookieService.get("name");
+      this.router.navigate(['dashboard',this.name]);
+  }
   }
 
 }

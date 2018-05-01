@@ -1,95 +1,105 @@
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- </head>
- 
-   <div>
-     <nav class="navbar navbar-inverse">
-         <div class="container-fluid">
-           <div class="navbar-header">
-           <a class="navbar-brand namecolor">E-learning</a>
-           </div>
-           <ul class="nav navbar-nav">
-          <li class="active"><a>Home</a></li>
-           <li ><a routerLink='#'>My Courses</a></li>
-           
-           </ul>
-           <ul class="nav navbar-nav navbar-right">
-           <li><a class="namecolor"><span></span>HELLO {{name}} </a></li>
-           <li><a routerLink="" (click)="logout()"><span></span>LOGOUT</a></li>
-           </ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Admin Theme v3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="../../../assets/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <!-- Logo -->
+                  <div class="logo">
+                     <h1><a>Welcome {{name}}</a></h1>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="input-group form">
+                           <span class="input-group-btn">
+                             <button class="btn btn-primary" type="button">{{type_of_user}}</button>
+                           </span> 
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <div class="navbar navbar-inverse" role="banner">
+                      <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav" >
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                            <ul class="dropdown-menu animated fadeInUp">
+                              <li><a routerLink="#" (click)="logout()">Logout</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+               </div>
+            </div>
          </div>
-         </nav>
-       </div>
- <!-- App component change -->
+    </div>
 
+    <div class="page-content">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li class="current"><a><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    
+                    <li *ngIf='type_of_user=="instructor"'><a href="#"><i class="glyphicon glyphicon-calendar"></i> Add Courses</a></li>
+                
+                    
+                </ul>
+             </div>
+             
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="content-box-large">
+                        <div class="content-box-header">
+                            <div class="panel-title">Available Courses</div>
+                            
+                            
+                        </div>
+                        <ul class="list-group">
+                            <a class="list-group-item" style="cursor:pointer" *ngFor="let course of available_courses;index as i;">
+                               <h5>Course Name: <b>{{course}}</b></h5>
+                               <h5>Instructor Name: <b>{{instructor_name[i]}}</b></h5>
+                               <button class="btn btn-success" type="submit" id="{{course_id[i]}}" (click)="onAddCourse($event)">Register</button>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
 
- <div class="backg">		
-</div>
-
-<!--MY COURSES-->
-<div class="container-fluid">
-<div id="MY COURSES">
-<h3 class="text-center">TRENDING COURSES</h3>
-
-<div class="row text-center">
-<div class="col-sm-4">
-  <div class="thumbnail background">
-  
-    <p><strong>Node.js</strong></p>
-    <p></p>
-    <button class="btn buttonback">View Course</button>
-  </div>
-</div>
-<div class="col-sm-4">
-  <div class="thumbnail background">
-
-    <p><strong>Angularjs</strong></p>
-    <p></p>
-    <button class="btn buttonback">View Course</button>
-  </div>
-</div>
-<div class="col-sm-4">
-  <div class="thumbnail background">
-  
-    <p><strong>Deep Learning</strong></p>
-    <p></p>
-    <button class="btn buttonback">View Course</button>
-  </div>
-</div>
-</div>
-</div>
-</div>
-<!--Footer-->
-<div class="footer-top">
-<div class="container">
-<div class="col-md-4 welcome">
-  <h3>E-Learning</h3>
-  <p>Understanding eLearning is simple. eLearning is learning utilizing electronic technologies to access educational curriculum outside of a traditional classroom.  In most cases, it refers to a course, program or degree delivered completely online.</p>
-  
-</div>
-<div class="col-md-3 address">
-  <h3>Address</h3>
-    <p>Venturepact<br>
-      Phagwara, Punjab
-    </p>
-          <p class="phone">Phone : 9988776655</p>
-      <p><span id="1">Email : <a href="#">venturepact@venturepact.co.in</a></span>
-      
-    </p>
-</div>
-<div class="col-md-5 wthree-subscribe">
-  <h3>Newsletter </h3>
-  <p>Receive the latest course information.</p>
-  <div class="w3-agileits-subscribe-form">
-    <form action="#" method="post">
-      <input type="text" placeholder="Email" name="Subscribe" required="">
-      <button class="btn1 btn-info">Subscribe</button>
-    </form>
-  </div>
-</div>
-  <div class="clearfix"></div>
-</div>
-</div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="content-box-header">
+                                <div class="panel-title">My Courses</div>      
+                            </div>
+                            <div class="content-box-large box-with-header">
+                                <ul class="list-group">
+                                    <a class="list-group-item" style="cursor:pointer" *ngFor="let mycourse of mycourses">
+                                                                     {{mycourse}} <br><br>
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>  
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

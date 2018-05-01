@@ -24,9 +24,7 @@ const UserSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    courses:{
-        type:[] 
-    }
+    courses:[]
 });
 
-const User=module.exports=mongoose.model('User',UserSchema);
+const users=module.exports=mongoose.model('User',UserSchema);

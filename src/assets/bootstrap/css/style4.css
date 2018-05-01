@@ -1,0 +1,27 @@
+body {font-family: "Times New Roman", Georgia, Serif;}
+h1,h2,h3,h4,h5,h6 {
+    font-family: "Playfair Display";
+    letter-spacing: 5px;
+}
+    .abc{
+        background: coral;
+    }
+	.panel-footer .list-inline >li >a{
+		color: black !important;
+		text-decoration: none;
+		display: block;
+	}
+	.overview{
+		background: #DDFFDD;
+	}
+	.container{
+		margin-top: 3%;
+	}
+	.section{
+		margin-top: 3%;
+}
+ .footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }

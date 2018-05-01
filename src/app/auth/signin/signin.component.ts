@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input,Output,EventEmitter } from '@angular/core';
 import { AuthenticationService } from './auth.service'; 
 import { Router } from '@angular/router';
 import { AuthguardGuard } from '../../authguard.guard';
@@ -8,33 +8,45 @@ import { CookieService } from '../cookie.service';
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
-  // providers: [AuthenticationService,AuthguardGuard]
 })
 export class SigninComponent implements OnInit {
-  user : String;
-  pwd: String;  
-  name: String;
+  name;
+  user : string;
+  pwd: string;  
+  name1: string;
+  type_of_user:string;
+  userid:string;
+  courses:any;
   constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {  
   }
-
+  
 getLogin()
 {
   this._authService.getlogin({user:this.user, pwd:this.pwd}).
   then((res) => {
-     this.name = res.name;
-    if(this.name=="Wrong")
+     this.name1 = res.name;
+     this.type_of_user=res.type_of_user;
+     this.userid=res.userid;
+     this.courses=res.courses;
+     this._cookieService.set("name",this.name1,null,null,null,null);
+     this._cookieService.set("type_of_user",this.type_of_user,null,null,null,null);
+     this._cookieService.set("userid",this.userid,null,null,null,null);
+     this._cookieService.set("courses",this.courses,null,null,null,null);
+    if(this.name1=="Wrong")
     {}
     else{
-      //change
-      // this._cookieService.set("isLogedIn","yes",null,null,null,null);
+      this._cookieService.set("isLogedIn","yes",null,null,null,null);
       this._authService.setUserLoggedIn();
-      //change
-    this.router.navigate(['/dashboard', this.name])
+    this.router.navigate(['/dashboard', this.name1])
   }
   });
  
 }
   ngOnInit() {
+    if(this._cookieService.get("isLogedIn")=="yes"){
+      this.name=this._cookieService.get("name");
+      this.router.navigate(['dashboard',this.name]);
+  }
   }
 
 }

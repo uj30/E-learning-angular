@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from './auth.service'; 
+import { Router } from '@angular/router';
+import { CookieService } from '../../auth/cookie.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,11 +12,12 @@ import { AuthenticationService } from './auth.service';
 export class SignupComponent implements OnInit {
   user : String;
   pwd: String;  
-  name:String;
+  name1:String;
   type_of_user:String;
   show : Boolean;
+  name;
 
-  constructor(public _authService:AuthenticationService) {
+  constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {
     this.show=true;
    }
   getregister()
@@ -22,7 +25,7 @@ export class SignupComponent implements OnInit {
 
   console.log(this.user);
   console.log(this.type_of_user);
-  if(this.user==undefined || this.pwd==undefined || this.name==undefined || this.type_of_user==undefined)
+  if(this.user==undefined || this.pwd==undefined || this.name1==undefined || this.type_of_user==undefined)
   {
     alert("Every field is mandatory");
   }
@@ -32,7 +35,7 @@ export class SignupComponent implements OnInit {
       }
       else
       {
-  this._authService.getregister({name:this.name,user:this.user, pwd:this.pwd,type_of_user:this.type_of_user}).
+  this._authService.getregister({name:this.name1,user:this.user, pwd:this.pwd,type_of_user:this.type_of_user}).
   then((res)=>{
    var res1 = res.json();
     console.log(res1.msg);
@@ -42,11 +45,13 @@ export class SignupComponent implements OnInit {
     else{ this.show=false;}
    
   });
- 
-}
-    
+     }
   }
   ngOnInit() {
+    if(this._cookieService.get("isLogedIn")=="yes"){
+      this.name=this._cookieService.get("name");
+      this.router.navigate(['dashboard',this.name]);
+  }
   }
 
 }
