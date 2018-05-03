@@ -7,9 +7,22 @@ const Courses=require('../models/totalcourses');
 //Getting Login Information
 router.get('/login',function(req,res,next){
         User.find(function(err,users){
-        res.json(users);
+        res.json(users);        
     })
 });
+
+//Getting Mycourses
+//cc
+// router.get('/logins',function(req,res,next){
+//         User.find(async function(err,users){
+//             for(let i=0;i<users.length;i++){
+//             const course1  = await User.findOne({_id:users[i]}).populate('courses');
+//             console.log("Populate",course1);
+//         res.json(course1);   
+//     }     
+//     })
+// });
+//cc
 
 //Getting Total Information
 router.get('/getCourses',function(req,res,next){
@@ -24,8 +37,8 @@ router.post('/signup',function(req,res,next){
     
      let newUser =new User({
          name:req.body.name,
-         email:req.body.user,
-         password:req.body.pwd,
+         email:req.body.email,
+         password:req.body.password,
          type_of_user:req.body.type_of_user,
          courses:req.body.courses
      });
@@ -41,15 +54,20 @@ router.post('/signup',function(req,res,next){
      })
 });
 
-//For adding couses into student account
+//For adding couses into student/instructor account
 router.post('/addcourses',function(req,res,next){
-    console.log(req.body);
-    User.findByIdAndUpdate(req.body.userid,{ $push: { courses: req.body.courses} }, function(err, result){
+    //cc
+    // const course  = await User.findOne({_id:req.body.userid}).populate('courses' );
+    // console.log(course.courses[0].course_name);
+  
+    User.findByIdAndUpdate(req.body.userid,{ $addToSet: { courses: req.body.courses} }, function(err, result){
         if(err){
             console.log(err);
+            res.json({msg:'Fail'});
         }
-        console.log("RESULT: " + result);
-        res.send('Done')
+      else{
+        res.json({msg:'User add'});
+      }
     });
 });
 

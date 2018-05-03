@@ -17,26 +17,42 @@ constructor(private http:Http,private _cookieService:CookieService)
  
  //cc
 
- getUpdates(){
-  return this.http.get('http://localhost:3000/api/login')
-  .toPromise()
-  .then((res)=>{
-    var res1 = res.json();
-    const len = res1.length;
-    var id2 = this._cookieService.get("userid");
-    console.log(id2);
-    for(let i = 0; i<len; i++)
-    {
-      if(res1[i]._id==id2)
-      {
-        var courses = res1[i].courses;
-        console.log(courses);
-        this._cookieService.set("courses",courses,null,null,null,null);
-      }
-    }
-  });
- }
+//  getUpdates(){
+//   return this.http.get('http://localhost:3000/api/login')
+//   .toPromise()
+//   .then((res)=>{
+//     var res1 = res.json();
+//     const len = res1.length;
+//     var id2 = this._cookieService.get("userid");
+//     console.log(id2);
+//     for(let i = 0; i<len; i++)
+//     {
+//       if(res1[i]._id==id2)
+//       {
+//         var courses = res1[i].courses;
+//         console.log(courses);
+//         this._cookieService.set("courses",courses,null,null,null,null);
+//       }
+//     }
+//   });
+//  }
 
+       getmycourses(){
+        return this.http.get('http://localhost:3000/api/login')
+      .toPromise()
+      .then((res)=>{ 
+        var res1=res.json();
+        var id=this._cookieService.get("userid");
+        for(let i=0;i<res1.length;i++){
+        if(id==res1[i]._id)
+        {
+          var res2=res1[i].courses;
+          console.log("res2",res2);
+        return {res2};
+      }}
+      })
+       }
+  
    //cc
     total_avail_courses(){
       return this.http.get('http://localhost:3000/api/getcourses')
@@ -49,9 +65,9 @@ constructor(private http:Http,private _cookieService:CookieService)
 
 //cc
    registerCourse(user){
-     console.log(user);
+     console.log("hello",user.courses);
     return this.http.post('http://localhost:3000/api/addcourses',user).toPromise()
-    .then((res)=>{return res})
+     .then((res)=>{return res})
    }
    //cc
 
@@ -81,16 +97,16 @@ constructor(private http:Http,private _cookieService:CookieService)
            status=1;
            const name = res1[i].name;
            const type_of_user=res1[i].type_of_user;
-           const courses=res1[i].courses;
+           //const courses=res1[i].courses;
            this.userid=res1[i]._id;
            console.log(name);
-            return {name:name,type_of_user:type_of_user,userid:this.userid,courses:courses};
+            return {name:name,type_of_user:type_of_user,userid:this.userid};
           }
          }
         if(status==0)
          {
             alert("Your credentials is wrong");
-            return {name:"Wrong",type_of_user:"NULL",userid:"NULL",courses:[]};
+            return {name:"Wrong",type_of_user:"NULL",userid:"NULL"};
          }
         
     });

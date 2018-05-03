@@ -23,6 +23,8 @@ export class SignupComponent implements OnInit {
   getregister()
   {
 
+    console.log(this.pwd);
+    console.log(this.name1);
   console.log(this.user);
   console.log(this.type_of_user);
   if(this.user==undefined || this.pwd==undefined || this.name1==undefined || this.type_of_user==undefined)
@@ -35,7 +37,7 @@ export class SignupComponent implements OnInit {
       }
       else
       {
-  this._authService.getregister({name:this.name1,user:this.user, pwd:this.pwd,type_of_user:this.type_of_user}).
+  this._authService.getregister({name:this.name1,email:this.user, password:this.pwd,type_of_user:this.type_of_user}).
   then((res)=>{
    var res1 = res.json();
     console.log(res1.msg);

@@ -16,6 +16,10 @@ const UserSchema=mongoose.Schema({
           description: String
       }
     ]
+    // author: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'User'
+    //   }
 });
 
 const User=module.exports=mongoose.model('Total Courses',UserSchema);

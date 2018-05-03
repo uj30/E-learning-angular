@@ -1,6 +1,8 @@
 var mongoose=require('mongoose');
 const validator=require('validator');
 
+// var totalcourses=require('../models/totalcourses');
+
 const UserSchema=mongoose.Schema({
     name:{
         type:String,
@@ -24,7 +26,11 @@ const UserSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    courses:[]
+    courses:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Total Courses"
+    }
+    ]
 });
 
 const users=module.exports=mongoose.model('User',UserSchema);
