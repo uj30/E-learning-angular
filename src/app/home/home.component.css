@@ -5,7 +5,6 @@
     margin: 0 !important;
     padding: 4px !important
 }
-/* #head */
 
 /* Increase the font size of the h1 element */
 .header h1 {
@@ -71,7 +70,6 @@ p.footer-gd a {
 }
 .footer-top {
     background-image: url('/../../assets/images/footer.jpg');
-    /* background: url(https://www.google.co.in/imgres?imgurl=http%3A%2F%2Fwww.webaward.org%2Fimages%2Fhtmltoimage%2Fwww.masterclass.com.jpeg&imgrefurl=http%3A%2F%2Fwww.webaward.org%2Fwinners_detail.asp%3Fyr%3Dall%26award_level%3Dbest%26category%3DEducation&docid=c8CG_OGqOLItJM&tbnid=nydGL17834BZdM%3A&vet=12ahUKEwjwzMiWv6zaAhVEq48KHemFD4A4ZBAzKAgwCHoECAAQCQ..i&w=342&h=332&bih=637&biw=1366&q=education%20website%20images&ved=2ahUKEwjwzMiWv6zaAhVEq48KHemFD4A4ZBAzKAgwCHoECAAQCQ&iact=mrc&uact=8) no-repeat 0px 0px; */
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -91,7 +89,6 @@ agile_header_social li
     width: 100%;
     height: 600px;
 }
-
 .background{
     background-color: aqua;
 }

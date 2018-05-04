@@ -1,8 +1,7 @@
 var mongoose=require('mongoose');
 const validator=require('validator');
 
-// var totalcourses=require('../models/totalcourses');
-
+//Schema For Users Information
 const UserSchema=mongoose.Schema({
     name:{
         type:String,

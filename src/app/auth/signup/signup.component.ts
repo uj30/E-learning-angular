@@ -20,13 +20,11 @@ export class SignupComponent implements OnInit {
   constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {
     this.show=true;
    }
+
+   //Function for Register User In Database
+   
   getregister()
   {
-
-    console.log(this.pwd);
-    console.log(this.name1);
-  console.log(this.user);
-  console.log(this.type_of_user);
   if(this.user==undefined || this.pwd==undefined || this.name1==undefined || this.type_of_user==undefined)
   {
     alert("Every field is mandatory");
@@ -40,15 +38,14 @@ export class SignupComponent implements OnInit {
   this._authService.getregister({name:this.name1,email:this.user, password:this.pwd,type_of_user:this.type_of_user}).
   then((res)=>{
    var res1 = res.json();
-    console.log(res1.msg);
     if(res1.msg=="Fail")
     { alert("Try Different Email");
     }
     else{ this.show=false;}
-   
   });
      }
   }
+  
   ngOnInit() {
     if(this._cookieService.get("isLogedIn")=="yes"){
       this.name=this._cookieService.get("name");

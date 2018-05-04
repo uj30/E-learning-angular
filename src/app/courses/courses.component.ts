@@ -16,6 +16,7 @@ export class CoursesComponent implements OnInit {
   angular:Boolean;
   node:Boolean;
   deep:Boolean;
+
   constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {
     this.show=true;
     this.html=false;
@@ -24,6 +25,7 @@ export class CoursesComponent implements OnInit {
     this.deep=false;
    }
    
+   //Button Click Function
    html_1()
    {
      this.show=false;
@@ -64,6 +66,7 @@ export class CoursesComponent implements OnInit {
      this.show=true;
      this.deep=false;
    }
+
   ngOnInit() {
     if(this._cookieService.get("isLogedIn")=="yes"){
       this.name=this._cookieService.get("name");

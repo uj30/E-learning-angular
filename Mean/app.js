@@ -10,6 +10,7 @@ var route=require('./routes/route');
 app.use(cors());
 app.use(bodyParser.json());
 
+//For Connecting Database
 mongoose.connect('mongodb://localhost:27017/E-learning-Apps');
 mongoose.connection.on('connected',function(){
   console.log('Connected to database');

@@ -7,15 +7,13 @@ export class AuthenticationService {
 
   constructor(private http:Http) { }
 
- 
+ //For Registering User In Database
    getregister(user) {
-       console.log(user);
      return  this.http.post('http://localhost:3000/api/signup',user)
       .toPromise()
       .then((res)=> {
         return res;
       });
-
   }
 
 }

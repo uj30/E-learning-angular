@@ -16,10 +16,10 @@ export class SigninComponent implements OnInit {
   name1: string;
   type_of_user:string;
   userid:string;
- // courses:any;
   constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {  
   }
   
+  //Function for Checking Credentials
 getLogin()
 {
   this._authService.getlogin({user:this.user, pwd:this.pwd}).
@@ -27,11 +27,9 @@ getLogin()
      this.name1 = res.name;
      this.type_of_user=res.type_of_user;
      this.userid=res.userid;
-     //this.courses=res.courses;
      this._cookieService.set("name",this.name1,null,null,null,null);
      this._cookieService.set("type_of_user",this.type_of_user,null,null,null,null);
      this._cookieService.set("userid",this.userid,null,null,null,null);
-    // this._cookieService.set("courses",this.courses,null,null,null,null);
     if(this.name1=="Wrong")
     {}
     else{
@@ -42,6 +40,7 @@ getLogin()
   });
  
 }
+
   ngOnInit() {
     if(this._cookieService.get("isLogedIn")=="yes"){
       this.name=this._cookieService.get("name");

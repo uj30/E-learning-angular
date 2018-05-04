@@ -15,30 +15,12 @@ constructor(private http:Http,private _cookieService:CookieService)
   this.isUserLoggedIn=this._cookieService.hasItem('isLogedIn') || false;
  }
  
- //cc
-
-//  getUpdates(){
-//   return this.http.get('http://localhost:3000/api/login')
-//   .toPromise()
-//   .then((res)=>{
-//     var res1 = res.json();
-//     const len = res1.length;
-//     var id2 = this._cookieService.get("userid");
-//     console.log(id2);
-//     for(let i = 0; i<len; i++)
-//     {
-//       if(res1[i]._id==id2)
-//       {
-//         var courses = res1[i].courses;
-//         console.log(courses);
-//         this._cookieService.set("courses",courses,null,null,null,null);
-//       }
-//     }
-//   });
-//  }
-
-       getmycourses(){
-        return this.http.get('http://localhost:3000/api/login')
+ //Getting User Courses
+      getmycourses(){
+        var res2=[];
+        var res3=[];
+        var res4=[];
+        return this.http.get('http://localhost:3000/api/logins')
       .toPromise()
       .then((res)=>{ 
         var res1=res.json();
@@ -46,14 +28,16 @@ constructor(private http:Http,private _cookieService:CookieService)
         for(let i=0;i<res1.length;i++){
         if(id==res1[i]._id)
         {
-          var res2=res1[i].courses;
-          console.log("res2",res2);
-        return {res2};
-      }}
+          for(let j=0;j<res1[i].courses.length;j++){
+          res2.push(res1[i].courses[j].course_name);
+          res3.push(res1[i].courses[j]._id);
+          res4.push(res1[i].courses[j].instructor_name);
+      }}}
+      return {res2,res3,res4};
       })
        }
   
-   //cc
+   // Getting Total Available Courses
     total_avail_courses(){
       return this.http.get('http://localhost:3000/api/getcourses')
       .toPromise()
@@ -63,26 +47,25 @@ constructor(private http:Http,private _cookieService:CookieService)
       })
     }
 
-//cc
+//To Register Course
    registerCourse(user){
-     console.log("hello",user.courses);
     return this.http.post('http://localhost:3000/api/addcourses',user).toPromise()
      .then((res)=>{return res})
    }
-   //cc
-
+   
+   //Setting User LoggedIn
    setUserLoggedIn()
    {
      let a=this._cookieService.get("isLogedIn");
-     console.log(a);
      this.isUserLoggedIn=a?true:false;
-     console.log(this.isUserLoggedIn);
    }
 
+   //Checking User LoggedIn 
    getUserLoggedIn(){
      return this.isUserLoggedIn;
    }
   
+   //For Login
   getlogin(data){
     var status=0;
     return this.http.get('http://localhost:3000/api/login')
@@ -90,16 +73,13 @@ constructor(private http:Http,private _cookieService:CookieService)
     .then((res)=>{
         var res1 = res.json();
         const len = res1.length;
-        
          for( let i = 0; i<len; i++){
           if(res1[i].email==data.user && res1[i].password==data.pwd) 
           {
            status=1;
            const name = res1[i].name;
            const type_of_user=res1[i].type_of_user;
-           //const courses=res1[i].courses;
            this.userid=res1[i]._id;
-           console.log(name);
             return {name:name,type_of_user:type_of_user,userid:this.userid};
           }
          }

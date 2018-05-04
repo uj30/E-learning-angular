@@ -15,6 +15,7 @@ import { AuthguardGuard } from './authguard.guard';
 import { AuthenticationService } from '../app/auth/signin/auth.service'; 
 import { CookieService } from './auth/cookie.service';
 
+//Path For Routing
 const rt: Routes = [
   {path:'signup',component: SignupComponent },
   {path:'signin',component: SigninComponent },
@@ -24,6 +25,7 @@ const rt: Routes = [
   {path:'',redirectTo: '/home',pathMatch:'full' },
   {path:'**',component: PageNotFoundComponent }
 ];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,4 +44,5 @@ const rt: Routes = [
   providers: [AuthguardGuard,AuthenticationService,CookieService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

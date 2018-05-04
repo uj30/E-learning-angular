@@ -64,7 +64,7 @@
           </div>
           <div class="col-md-10">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" *ngIf='type_of_user=="student"'>
                     <div class="content-box-large">
                         <div class="content-box-header">
                             <div class="panel-title">Available Courses</div>
@@ -89,8 +89,9 @@
                             </div>
                             <div class="content-box-large box-with-header">
                                 <ul class="list-group">
-                                    <a class="list-group-item" style="cursor:pointer" *ngFor="let mycourse of mycourses">
-                                                                     {{mycourse}} <br><br>
+                                    <a class="list-group-item" style="cursor:pointer" *ngFor="let mycourse of mycourses;index as i">
+                                             <h5>Course Name: <b>{{mycourse}}</b></h5>
+                                             <h5>Instructor Name: <b>{{instructor[i]}}</b></h5>
                                     </a>
                                 </ul>
                             </div>
