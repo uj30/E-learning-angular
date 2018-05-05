@@ -16,9 +16,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     if(this._cookieService.get("isLogedIn")=="yes"){
-      this.name=this._cookieService.get("name");
-      this.router.navigate(['dashboard',this.name]);
+      this.router.navigate(['dashboard']);
   }
   }
-  
 }

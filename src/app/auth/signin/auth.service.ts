@@ -47,6 +47,16 @@ constructor(private http:Http,private _cookieService:CookieService)
       })
     }
 
+    //Adding The Course To Total Available Course Database
+    addAvailableCourse(user) {
+      console.log(user);
+    return  this.http.post('http://localhost:3000/api/totalcourses',user)
+     .toPromise()
+     .then((res)=> {
+       return res;
+     });
+    }
+    
 //To Register Course
    registerCourse(user){
     return this.http.post('http://localhost:3000/api/addcourses',user).toPromise()

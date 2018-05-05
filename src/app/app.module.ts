@@ -21,7 +21,7 @@ const rt: Routes = [
   {path:'signin',component: SigninComponent },
   {path:'home',component: HomeComponent },
   {path:'courses',component: CoursesComponent },
-  {path:'dashboard/:name',canActivate:[AuthguardGuard],component: DashboardComponent },
+  {path:'dashboard',canActivate:[AuthguardGuard],component: DashboardComponent },
   {path:'',redirectTo: '/home',pathMatch:'full' },
   {path:'**',component: PageNotFoundComponent }
 ];
