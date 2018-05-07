@@ -14,6 +14,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthguardGuard } from './authguard.guard';
 import { AuthenticationService } from '../app/auth/signin/auth.service'; 
 import { CookieService } from './auth/cookie.service';
+import { VideoCenterComponent } from './dashboard/video-center/video-center.component';
+import { VideoListComponent } from './dashboard/video-list/video-list.component';
+import { VideoDetailComponent } from './dashboard/video-detail/video-detail.component';
+import { SafePipe } from './safe.pipe';
 
 //Path For Routing
 const rt: Routes = [
@@ -22,6 +26,7 @@ const rt: Routes = [
   {path:'home',component: HomeComponent },
   {path:'courses',component: CoursesComponent },
   {path:'dashboard',canActivate:[AuthguardGuard],component: DashboardComponent },
+  {path:'video-center',component:VideoCenterComponent },
   {path:'',redirectTo: '/home',pathMatch:'full' },
   {path:'**',component: PageNotFoundComponent }
 ];
@@ -34,7 +39,11 @@ const rt: Routes = [
     SignupComponent,
     SigninComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    VideoCenterComponent,
+    VideoListComponent,
+    VideoDetailComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,FormsModule,

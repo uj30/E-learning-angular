@@ -14,6 +14,7 @@ const UserSchema=mongoose.Schema({
   content:[
       {
           topic: String,
+          url:String,
           description: String
       }
     ]

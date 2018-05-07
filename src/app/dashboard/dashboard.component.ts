@@ -15,6 +15,7 @@ import { THROW_IF_NOT_FOUND } from '@angular/core/src/di/injector';
 
 export class DashboardComponent implements OnInit {
 
+  ids;
   mycourses;
   instructor;
   mycourseid;
@@ -26,8 +27,9 @@ export class DashboardComponent implements OnInit {
   
   coursename:String;
   topic:String;
+  url:String;
   desc:String;
-  content:{topic: String, description: String}[] = [];
+  content:{topic: String,url:String, description: String}[] = [];
   check:Boolean;
   
   constructor(public _authService:AuthenticationService,private route: ActivatedRoute,private router: Router,private _cookieService:CookieService)
@@ -49,10 +51,12 @@ export class DashboardComponent implements OnInit {
     this.check=false;
     var info = {
       topic : this.topic,
+      url : this.url,
       description: this.desc
     }
     this.content.push(info);
      this.topic="";
+     this.url="";
     this.desc="";
   }
 
@@ -61,10 +65,12 @@ export class DashboardComponent implements OnInit {
   {     
     var info = {
       topic : this.topic,
+      url : this.url,
       description: this.desc
     }
     this.content.push(info);
      this.topic="";
+     this.url="";
     this.desc="";
     
     var target = event.target || event.srcElement || event.currentTarget;
@@ -87,6 +93,7 @@ export class DashboardComponent implements OnInit {
     this.instructor=res.res4; });
 
     this.topic="";
+    this.url="";
   this.desc="";
   this.coursename="";
   this.check=true;
@@ -94,7 +101,12 @@ export class DashboardComponent implements OnInit {
     })
   })
 }
-  
+  onClick(ids)
+  {
+   console.log("HI",ids);
+   this._cookieService.set("course_id",ids,null,null,null,null);
+   this.router.navigate(["video-center"]);
+  }
   //Function For Adding Course In User Account And Removing From Available Course And Display In User MyCourses
   onAddCourse(event:any)
   {
