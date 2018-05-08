@@ -20,23 +20,26 @@ export class VideoCenterComponent implements OnInit {
    courseName
   constructor(private _videoService: VideoService,private router: Router,private _cookieService:CookieService) { }
   
+  dashboard(){
+    this._cookieService.remove("course_id",null,null);
+    this.router.navigate(['/dashboard'])
+  }
 
   logout(){
     this._cookieService.remove('isLogedIn',null,null);
     this._cookieService.remove('name',null,null);
     this._cookieService.remove('type_of_user',null,null);
     this._cookieService.remove('userid',null,null);
+    this._cookieService.remove("course_id",null,null);
     this.router.navigate(['/home'])
   }
+
   ngOnInit() {
     var id=this._cookieService.get("course_id");
     this._videoService.getVideos()
       .then((res)=>{
-        console.log("Check",res);
         for(let i=0;i<res.length;i++)
         {
-          console.log("in for",res[i]._id,"dfef",id);
-          
           if(res[i]._id==id)
           {
             this.courseName=res[i].course_name;
@@ -49,7 +52,6 @@ this.type_of_user=this._cookieService.get("type_of_user");
   }
   onSelectVideo(video:any){
      this.selectedVideo = video;
-    console.log(this.selectedVideo);
    }
    
 }

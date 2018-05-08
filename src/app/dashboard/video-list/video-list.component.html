@@ -1,3 +1,10 @@
-<ul class="nav nav-pills nav-stacked">
-  <li (click)="onSelect(video)" *ngFor="let video of videos"><a>{{video.topic}}</a></li>
+<div class="content-box-large">
+  <div class="content-box-header">
+<u><b><div class="panel-title" style="margin-left: 30%"><h3>Topics</h3></div></b></u>
+</div>
+<ul class="list-group">
+  <a class="list-group-item" style="cursor:pointer" (click)="onSelect(video)" *ngFor="let video of videos">
+     <h5> <b>{{video.topic}}</b></h5>
+  </a>
 </ul>
+</div>

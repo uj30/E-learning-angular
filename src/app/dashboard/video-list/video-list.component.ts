@@ -25,14 +25,12 @@ export class VideoListComponent implements OnInit {
     this._cookieService.remove('name',null,null);
     this._cookieService.remove('type_of_user',null,null);
     this._cookieService.remove('userid',null,null);
-  //  this._cookieService.remove('courses',null,null);
     this.router.navigate(['/home'])
   }
 
   ngOnInit() {
     this.name=this._cookieService.get("name");
 this.type_of_user=this._cookieService.get("type_of_user");
-console.log(this.type_of_user);
      this.route.params.subscribe(params => {
       this.name = params.name
    });

@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
     this._cookieService.remove('name',null,null);
     this._cookieService.remove('type_of_user',null,null);
     this._cookieService.remove('userid',null,null);
+    this._cookieService.remove("course_id",null,null);
     this.router.navigate(['/home'])
   }
 
@@ -101,12 +102,14 @@ export class DashboardComponent implements OnInit {
     })
   })
 }
+
+//Routing To CourseContent
   onClick(ids)
   {
-   console.log("HI",ids);
    this._cookieService.set("course_id",ids,null,null,null,null);
-   this.router.navigate(["video-center"]);
+   this.router.navigate(["coursecontent"]);
   }
+
   //Function For Adding Course In User Account And Removing From Available Course And Display In User MyCourses
   onAddCourse(event:any)
   {

@@ -61,28 +61,16 @@ router.post('/addcourses',function(req,res,next){
     });
 });
 
+//Getting The Video Of The Topic Of Total Courses
 router.get('/totalcourses',function(req,res,next){
-    console.log('Get request for all videos');
     Courses.find().exec(function(err,res1){
         if(err){
-            cosole.log("Error retrieving videos");
+            cosole.log("Error");
         }
         else{
             res.status(200).send(res1);
         }
     })
-       
-    
-    // Courses.find({content:req.body.content.topic,content:req.body.content.url,content:req.body.content.description})
-    // .exec(function(err,totalcourses){
-    //     if(err){
-    //         console.log("Error retrieving videos");
-    //     }else{
-    //         console.log('dfghjkl;',totalcourses);
-            
-    //         res.status(200).send(totalcourses)
-    //     }
-    // })
 });
 
  //Inserting into database for total courses

@@ -1,16 +1,7 @@
 <div>
   <div>
-      <iframe width="100%" height="500" [src]="video.url | safe ">
+      <iframe width="100%" height="500" [src]="video.url | safe " allowfullscreen>
       </iframe>
   </div>
-  
-      <!-- <div class="form-group">
-          <input type="input" class="form-control" name="title" required placeholder="title"
-          [(ngModel)]="video.title">
-      </div>
-      <div class="form-group">
-              <input type="input" class="form-control" name="url" required placeholder="url"
-              [(ngModel)]="video.url">
-          </div> -->     
-                 <h3>{{video.description}}</h3> 
+<h4>{{video.description}}</h4> 
 </div>

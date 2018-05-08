@@ -10,7 +10,6 @@ export class VideoService {
     return this._http.get("http://localhost:3000/api/totalcourses")
     .toPromise().then((res)=>{
       var res1=res.json();
-      console.log('Api fetch',res1);
       return res1;
     })
   }
