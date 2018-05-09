@@ -75,6 +75,15 @@ constructor(private http:Http,private _cookieService:CookieService)
      return this.isUserLoggedIn;
    }
   
+   //For Registering User In Database
+   getregister(user) {
+    return  this.http.post('http://localhost:3000/api/signup',user)
+     .toPromise()
+     .then((res)=> {
+       return res;
+     });
+ }
+
    //For Login
   getlogin(data){
     var status=0;

@@ -8,7 +8,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
-    width: 100%;
+    width: 210%;
     padding: 15px;
     margin: 5px 0 22px 0;
     display: inline-block;
@@ -25,6 +25,7 @@ input[type=text]:focus, input[type=password]:focus {
 hr {
     border: 1px solid #f1f1f1;
     margin-bottom: 25px;
+    width: 210%;
 }
 
 /* Set a style for all buttons */
@@ -35,7 +36,7 @@ hr {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 100%;
+    width: 210%;
     opacity: 0.9;
 }
 
@@ -52,4 +53,12 @@ a {
 .signin {
     background-color: #f1f1f1;
     text-align: center;
+}
+
+.ng-valid[required], .ng-valid.required {
+    border-left:5px solid green;
+}
+
+.ng-invalid:not(form) {
+    border-left: 5px solid red;
 }
