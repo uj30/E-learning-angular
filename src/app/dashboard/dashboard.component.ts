@@ -24,12 +24,6 @@ export class DashboardComponent implements OnInit {
   available_courses = [];
   instructor_name = [];
   course_id=[];
-  
-  coursename:String;
-  topic:String;
-  url:String;
-  desc:String;
-  content:{topic: String,url:String, description: String}[] = [];
   check:Boolean;
   
   constructor(public _authService:AuthenticationService,private route: ActivatedRoute,private router: Router,private _cookieService:CookieService)
@@ -45,63 +39,6 @@ export class DashboardComponent implements OnInit {
     this._cookieService.remove("course_id",null,null);
     this.router.navigate(['/home'])
   }
-
-  //Taking CourseName And Content Of Course Into Array Of Object And Empty The Field
-  onAdd(event:any)
-  {
-    this.check=false;
-    var info = {
-      topic : this.topic,
-      url : this.url,
-      description: this.desc
-    }
-    this.content.push(info);
-     this.topic="";
-     this.url="";
-    this.desc="";
-  }
-
-  //Adding Course To Total Available Course Database And MyCourses In User Account
-  onAddAvailableCourse(event:any)
-  {     
-    var info = {
-      topic : this.topic,
-      url : this.url,
-      description: this.desc
-    }
-    this.content.push(info);
-     this.topic="";
-     this.url="";
-    this.desc="";
-    
-    var target = event.target || event.srcElement || event.currentTarget;
-    console.log("course:",this.coursename);
-    this._authService.addAvailableCourse({course_name:this.coursename,content:this.content,instructor_name:this.name}).
-  then((res)=>{
-   var res1 = res.json();
-    console.log(res1.msg);
-    var cid;
-    this._authService.total_avail_courses().then((res)=>{
-    for(let i=0;i<res.res1.length;i++){
-     if(res.res1[i].course_name==this.coursename && res.res1[i].instructor_name==this.name)
-         cid=res.res1[i]._id;
-    }
-    }).then((res)=>{
-    var uid=this._cookieService.get("userid");
-  this._authService.registerCourse({userid:uid,courses:cid}).then((res)=>{this._authService.getmycourses().then((res)=>{
-    this.mycourses=res.res2; 
-    this.mycourseid=res.res3;      
-    this.instructor=res.res4; });
-
-    this.topic="";
-    this.url="";
-  this.desc="";
-  this.coursename="";
-  this.check=true;
-})
-    })
-  })
-}
 
 //Routing To CourseContent
   onClick(ids)

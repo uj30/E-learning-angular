@@ -12,6 +12,7 @@ import { HttpModule } from '@angular/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthguardGuard } from './authguard.guard';
+import { AuthguardcourseGuard } from './authguardcourse.guard';
 import { AuthenticationService } from '../app/auth/signin/auth.service'; 
 import { CookieService } from './auth/cookie.service';
 import { VideoCenterComponent } from './dashboard/video-center/video-center.component';
@@ -28,7 +29,7 @@ const rt: Routes = [
   {path:'home',component: HomeComponent },
   {path:'courses',component: CoursesComponent },
   {path:'dashboard',canActivate:[AuthguardGuard],component: DashboardComponent },
-  {path:'addcourses',component: AddcourseComponent },
+  {path:'addcourses',canActivate:[AuthguardcourseGuard],component: AddcourseComponent },
   {path:'myprofile',canActivate:[AuthguardGuard],component: MyprofileComponent },
   {path:'coursecontent',canActivate:[AuthguardGuard],component:VideoCenterComponent },
   {path:'',redirectTo: '/home',pathMatch:'full' },
@@ -56,7 +57,7 @@ const rt: Routes = [
     HttpModule,
     RouterModule.forRoot(rt)
   ],
-  providers: [AuthguardGuard,AuthenticationService,CookieService],
+  providers: [AuthguardGuard,AuthguardcourseGuard,AuthenticationService,CookieService],
   bootstrap: [AppComponent]
 })
 

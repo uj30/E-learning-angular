@@ -52,7 +52,7 @@
                 <ul class="nav">
                     <!-- Main menu -->
                     <li><a routerLink="/dashboard"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
-                    <li *ngIf='type_of_user=="Instructor"'><a routerLink="/addcourses" href="#"><i class="glyphicon glyphicon-home"></i>Add Courses</a></li>
+                    <li *ngIf='type_of_user=="Instructor"'><a routerLink="/addcourses" href="#"><i class="glyphicon glyphicon-pencil"></i>Add Courses</a></li>
                     <li class="current"><a><i class="glyphicon glyphicon-home"></i>My Profile</a></li>
                 </ul>
              </div>
@@ -69,18 +69,18 @@
                                             
                                             <div class="col-sm-12 col-md-12">
                                     
-                                                <h2>{{name}}</h2>
+                                                <h2>{{registerUserData.name}}</h2>
                                                 <h4>
-                                                <small><cite title="Place">{{state}}, {{country}} <i class="glyphicon glyphicon-map-marker">
+                                                <small><cite title="Place">{{registerUserData.state}}, {{registerUserData.country}} <i class="glyphicon glyphicon-map-marker">
                                                 </i></cite></small>
                                                 <p>
-                                                    <i class="glyphicon glyphicon-envelope"></i>{{email}}
+                                                    <i class="glyphicon glyphicon-envelope"></i>{{registerUserData.email}}
                                                     <br />
-                                                    <i class="glyphicon glyphicon-gift"></i>{{dob}}
+                                                    <i class="glyphicon glyphicon-gift"></i>{{registerUserData.dob}}
                                                     <br />
-                                                    <i class="glyphicon glyphicon-phone"></i>{{mobile}}
+                                                    <i class="glyphicon glyphicon-phone"></i>{{registerUserData.mobile}}
                                                     <br/>
-                                                    <i class="glyphicon glyphicon-education"></i>{{education}}
+                                                    <i class="glyphicon glyphicon-education"></i>{{registerUserData.education}}
                                                     <br/>
                                                   </p> </h4>
                                                   <button class="btn" (click)="edit()">Edit</button>
@@ -107,39 +107,68 @@
                             <!-- form card login -->
                             <div class="card rounded-0">
                               <div class="card-body">
-                                  <label><strong>Name</strong></label>
-                                  <br>
-                                  <input type="text" [(ngModel)]="name" name="name">
-                                  <br><br>
-                                  <label><strong>Email</strong></label>
-                                  <br>
-                                  <input type="text" [(ngModel)]="email" name="email">
-                                  <br><br>
-                                  <label><strong>Mobile Number</strong></label>
-                                  <br>
-                                  <input type="text" [(ngModel)]="mobile" name="mobile">
-                                  <br><br>
-                                  <label><strong>Date Of Birth</strong></label>
-                                  <br>
-                                  <input type="date" [(ngModel)]="dob" name="dob">
-                                  <br><br>
-                                  <label><strong>Highest Qualification</strong></label>
-                                  <br>
-                                  <input type="text" [(ngModel)]="education" name="education">
-                                  <br><br>
-                                  <label><strong>State</strong></label>
-                                  <br>
-                                  <input type="text" [(ngModel)]="state" name="state">
-                                  <br><br>
-                                  <label><strong>Country</strong></label>
-                                  <br>
-                                  <input type="text" [(ngModel)]="country" name="country">
-                                  <br><br>
-                                  <label><strong>Password</strong></label>
-                                  <br>
-                                  <input type="password" [(ngModel)]="password" name="password">
-                                  <br><br>
-                                  <button class="btn1" (click)="changes()">Save</button>
+                                
+                                  <form class="form" #registerform = "ngForm">
+                                      <div class="form-group">
+                                        <label><strong>Email</strong></label>
+                                        <input type="text" [(ngModel)]="registerUserData.email" id ="email" name="email" class="form-control"  required  pattern="[a-zA-Z]+(a-zA-Z0-9)*(@)[a-zA-z]+(.)(com|co.in|in|org)" #email = "ngModel">
+                                        <div *ngIf = "email?.errors && (email?.dirty || email?.touched)" class = "alert alert-danger">
+                                          <div [hidden]= "!email?.errors.required">
+                                             Email must be required
+                                          </div>
+                                          <div [hidden]= "!email?.errors.valid">
+                                            Enter valid email
+                                        </div>
+                                        </div>
+                                    </div>
+                              
+                                      <div class="form-group">
+                                        <label><strong>Password</strong></label>
+                                        <input type="password" id ="password" [(ngModel)]="registerUserData.password" name="password" class="form-control"  required minlength = 6 #password = "ngModel">
+                                        <div *ngIf = "password?.errors && (password?.dirty || password?.touched)" class = "alert alert-danger">
+                                          <div [hidden]= "!password?.errors.required">
+                                              Password is required
+                                          </div>
+                                          <div [hidden]= "!password?.errors.minlength">
+                                                Password must be atleast 6 characters long.
+                                          </div>
+                                        </div>
+                                      </div>
+                                      
+                                      <div class="form-group">
+                                          <label for="state"><strong>State</strong></label>
+                                          <input type="text" [(ngModel)]="registerUserData.state" id = "state" name="state" class="form-control" pattern="[a-zA-Z]+( )*[a-zA-Z]*" #state = "ngModel" >
+                                        <div *ngIf = "state?.errors && (state?.dirty || state?.touched)" class = "alert alert-danger">
+                                        </div>
+                                        </div>
+                                      
+                                        <div class="form-group">
+                                            <label for="country"><strong>Country</strong></label>
+                                            <input type="text" [(ngModel)]="registerUserData.country" id = "country" name="country" class="form-control" pattern="[a-zA-Z]+( )*[a-zA-Z]*" #country = "ngModel" >
+                                          <div *ngIf = "country?.errors && (country?.dirty || country?.touched)" class = "alert alert-danger">
+                                          </div>
+                                          </div>
+
+                                          <div class="form-group">
+                                              <label for="mobile"><strong>Mobile Number</strong></label>
+                                              <input type="text" [(ngModel)]="registerUserData.mobile" id = "mobile" name="mobile" class="form-control" pattern="[6-9][0-9]+" minlength = 8 maxlength = 15 #mobile = "ngModel" >
+                                            <div *ngIf = "mobile?.errors && (mobile?.dirty || mobile?.touched)" class = "alert alert-danger">
+                                            </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="dob"><strong>Date Of Birth</strong></label>
+                                                <input type="date" [(ngModel)]="registerUserData.dob" id = "dob" name="dob" class="form-control" #dob = "ngModel" >
+                                              </div>
+
+                                              <div class="form-group">
+                                                  <label for="education"><strong>Highest Qualification</strong></label>
+                                                  <input type="text" [(ngModel)]="registerUserData.education" id = "education" name="education" class="form-control" #education = "ngModel" >
+                                                </div>
+                        
+                                      <button type="button"  [disabled]= "!registerform.valid" (click)="changes()" class="btn btn-primary float-right registerbtn btn1">Save</button>
+                                    </form>
+
                                 </div> 
                             
                               <!--/card-block-->
