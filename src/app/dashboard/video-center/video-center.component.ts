@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Video } from '../../video';
 import { Router } from '@angular/router';
-import { VideoService } from '../../video.service';
 import { CookieService } from '../../auth/cookie.service';
+import { AuthenticationService } from '../../../app/auth/signin/auth.service';
 
 @Component({
   selector: 'app-video-center',
   templateUrl: './video-center.component.html',
   styleUrls: ['./video-center.component.css'],
-  providers: [VideoService,CookieService]
+  providers: [CookieService,AuthenticationService]
   
 })
 export class VideoCenterComponent implements OnInit {
@@ -18,7 +18,7 @@ export class VideoCenterComponent implements OnInit {
    name
    type_of_user
    courseName
-  constructor(private _videoService: VideoService,private router: Router,private _cookieService:CookieService) { }
+  constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) { }
   
   dashboard(){
     this._cookieService.remove("course_id",null,null);
@@ -36,7 +36,7 @@ export class VideoCenterComponent implements OnInit {
 
   ngOnInit() {
     var id=this._cookieService.get("course_id");
-    this._videoService.getVideos()
+    this._authService.getVideos()
       .then((res)=>{
         for(let i=0;i<res.length;i++)
         {

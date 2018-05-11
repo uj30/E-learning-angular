@@ -18,6 +18,8 @@ import { VideoCenterComponent } from './dashboard/video-center/video-center.comp
 import { VideoListComponent } from './dashboard/video-list/video-list.component';
 import { VideoDetailComponent } from './dashboard/video-detail/video-detail.component';
 import { SafePipe } from './safe.pipe';
+import { AddcourseComponent } from './addcourse/addcourse.component';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 //Path For Routing
 const rt: Routes = [
@@ -26,6 +28,8 @@ const rt: Routes = [
   {path:'home',component: HomeComponent },
   {path:'courses',component: CoursesComponent },
   {path:'dashboard',canActivate:[AuthguardGuard],component: DashboardComponent },
+  {path:'addcourses',component: AddcourseComponent },
+  {path:'myprofile',canActivate:[AuthguardGuard],component: MyprofileComponent },
   {path:'coursecontent',canActivate:[AuthguardGuard],component:VideoCenterComponent },
   {path:'',redirectTo: '/home',pathMatch:'full' },
   {path:'**',component: PageNotFoundComponent }
@@ -43,7 +47,9 @@ const rt: Routes = [
     VideoCenterComponent,
     VideoListComponent,
     VideoDetailComponent,
-    SafePipe
+    SafePipe,
+    AddcourseComponent,
+    MyprofileComponent
   ],
   imports: [
     BrowserModule,FormsModule,

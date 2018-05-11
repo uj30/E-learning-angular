@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Admin Theme v3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="../../../assets/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <!-- Logo -->
+                  <div class="logo">
+                     <h1><a>Welcome {{name}}</a></h1>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="input-group form">
+                           <span class="input-group-btn">
+                             <button class="btn btn-primary" type="button">{{type_of_user}}</button>
+                           </span> 
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <div class="navbar navbar-inverse" role="banner">
+                      <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav" >
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                            <ul class="dropdown-menu animated fadeInUp">
+                              <li><a routerLink="#" (click)="logout()">Logout</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li><a routerLink="/dashboard" href="#"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li class="current"><a><i class="glyphicon glyphicon-home"></i> Add Courses</a></li>
+                    <li><a routerLink="/myprofile" href="#"><i class="glyphicon glyphicon-home"></i>My Profile</a></li>
+                </ul>
+             </div>
+             
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+                  <div *ngIf='type_of_user=="Instructor"' class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                                
+                            <div class="content-box-header">
+                                <div class="panel-title">Add Courses</div>
+                            
+                            </div>
+                            <div class="content-box-large box-with-header">
+                                    
+                                       <div *ngIf="check"><h4>CourseName:</h4> <input type="text" class="inputsize" id="cname" [(ngModel)]="coursename"></div>
+                                            <h4>Topic:</h4> <input type="text" id="topic" class="inputsize" [(ngModel)]="topic" >
+                                            <h4>Url:</h4> <input type="text" id="url" class="inputsize" [(ngModel)]="url" >
+                                            <h4>Description:</h4> <textarea rows="10" class="inputsize" id="desc" [(ngModel)]="desc" ></textarea><br><br>
+                                            <button class="btn btn-primary inputbuttonsize" type="button" (click)="onAdd($event)">Next</button>
+                                            <button class="btn btn-primary inputbuttonsize" type="button" (click)="onAddAvailableCourse($event)">Add</button>  
+                            <br /><br />
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

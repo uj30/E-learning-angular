@@ -22,9 +22,23 @@ const UserSchema=mongoose.Schema({
         required:true
     },
     type_of_user:{
-        type:String,
-        required:true
+        type:String
     },
+    state:{
+         type:String
+    },
+    country:{
+        type:String
+    },
+    mobile:{
+        type:String
+   },
+   dob:{
+       type:String
+   },
+   education:{
+       type:String
+   },
     courses:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:"Total Courses"

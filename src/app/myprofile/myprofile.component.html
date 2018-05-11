@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Admin Theme v3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="../../../assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- styles -->
+    <link href="../../../assets/css/styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="header">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-5">
+                  <!-- Logo -->
+                  <div class="logo">
+                     <h1><a>{{a}}</a></h1>
+                  </div>
+               </div>
+               <div class="col-md-5">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="logo">
+                               <u><h1><a> {{type_of_user}}</a></h1></u>
+                      </div>
+                    </div>
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <div class="navbar navbar-inverse" role="banner">
+                      <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
+                        <ul class="nav navbar-nav" >
+                          <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
+                            <ul class="dropdown-menu animated fadeInUp">
+                              <li><a routerLink="#" (click)="logout()">Logout</a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </nav>
+                  </div>
+               </div>
+            </div>
+         </div>
+    </div>
+
+    <div class="page-content">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="sidebar content-box" style="display: block;">
+                <ul class="nav">
+                    <!-- Main menu -->
+                    <li><a routerLink="/dashboard"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li *ngIf='type_of_user=="Instructor"'><a routerLink="/addcourses" href="#"><i class="glyphicon glyphicon-home"></i>Add Courses</a></li>
+                    <li class="current"><a><i class="glyphicon glyphicon-home"></i>My Profile</a></li>
+                </ul>
+             </div>
+             
+          </div>
+          <div class="col-md-10">
+            <div class="row">
+
+                    <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-md-6" *ngIf="show">
+                                    <div class="well well-sm">
+                                        <div class="row">
+                                            
+                                            <div class="col-sm-12 col-md-12">
+                                    
+                                                <h2>{{name}}</h2>
+                                                <h4>
+                                                <small><cite title="Place">{{state}}, {{country}} <i class="glyphicon glyphicon-map-marker">
+                                                </i></cite></small>
+                                                <p>
+                                                    <i class="glyphicon glyphicon-envelope"></i>{{email}}
+                                                    <br />
+                                                    <i class="glyphicon glyphicon-gift"></i>{{dob}}
+                                                    <br />
+                                                    <i class="glyphicon glyphicon-phone"></i>{{mobile}}
+                                                    <br/>
+                                                    <i class="glyphicon glyphicon-education"></i>{{education}}
+                                                    <br/>
+                                                  </p> </h4>
+                                                  <button class="btn" (click)="edit()">Edit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+              
+              <div *ngIf="!show">
+                      <div class="container">
+                              <div class="row">
+                                  <div class="col-xs-12 col-sm-6 col-md-6">
+                                      <div class="well well-sm">
+                    <div class="layout" style="background-size:100% auto" >
+                      <div class="py-5">
+                        <div class="row">
+                          <div class="col-md-6 mx-auto">
+                            <span class="anchor" id="formLogin">
+                                    <h4>Edit Profile</h4>
+                            </span>
+                      <hr>
+                            <!-- form card login -->
+                            <div class="card rounded-0">
+                              <div class="card-body">
+                                  <label><strong>Name</strong></label>
+                                  <br>
+                                  <input type="text" [(ngModel)]="name" name="name">
+                                  <br><br>
+                                  <label><strong>Email</strong></label>
+                                  <br>
+                                  <input type="text" [(ngModel)]="email" name="email">
+                                  <br><br>
+                                  <label><strong>Mobile Number</strong></label>
+                                  <br>
+                                  <input type="text" [(ngModel)]="mobile" name="mobile">
+                                  <br><br>
+                                  <label><strong>Date Of Birth</strong></label>
+                                  <br>
+                                  <input type="date" [(ngModel)]="dob" name="dob">
+                                  <br><br>
+                                  <label><strong>Highest Qualification</strong></label>
+                                  <br>
+                                  <input type="text" [(ngModel)]="education" name="education">
+                                  <br><br>
+                                  <label><strong>State</strong></label>
+                                  <br>
+                                  <input type="text" [(ngModel)]="state" name="state">
+                                  <br><br>
+                                  <label><strong>Country</strong></label>
+                                  <br>
+                                  <input type="text" [(ngModel)]="country" name="country">
+                                  <br><br>
+                                  <label><strong>Password</strong></label>
+                                  <br>
+                                  <input type="password" [(ngModel)]="password" name="password">
+                                  <br><br>
+                                  <button class="btn1" (click)="changes()">Save</button>
+                                </div> 
+                            
+                              <!--/card-block-->
+                            </div>
+                            <!-- /form card login -->
+                      
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+              </div>
+              
+            </div>  
+          </div>
+        </div>
+    </div>
+  </body>
+</html>

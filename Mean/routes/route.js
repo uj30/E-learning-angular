@@ -11,6 +11,32 @@ router.get('/login',function(req,res,next){
     })
 });
 
+//Calling The User Info By Sending Its Id
+router.post('/userinfo',function(req,res,next){
+    User.findOne({_id:req.body.user}, function(err,obj) 
+    { 
+        res.json(obj);
+     });
+})
+
+//Updating The User Data
+router.post('/userupdate',function(req,res,next){
+    User.findByIdAndUpdate({_id:req.body._id}, { $set: {
+        name:req.body.name,
+             email:req.body.email,
+             password:req.body.password,
+             mobile:req.body.mobile,
+             education:req.body.education,
+             state:req.body.state,
+             country:req.body.country,
+             dob:req.body.dob
+     }}, { new: true }, function (err, users) {
+        if (err) res.json({msg:'Fail'});
+        res.json(users);
+      });
+    
+})
+
 //Getting Mycourses Of User
 router.get('/logins',function(req,res,next){
         User.find(async function(err,users){
@@ -31,6 +57,7 @@ router.get('/getCourses',function(req,res,next){
 
  //Inserting into database for User Login
 router.post('/signup',function(req,res,next){
+  
      let newUser =new User({
          name:req.body.name,
          email:req.body.email,

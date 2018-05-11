@@ -47,6 +47,15 @@ constructor(private http:Http,private _cookieService:CookieService)
       })
     }
 
+    //Getting the videos from the TotalCourse
+    getVideos(){
+      return this.http.get("http://localhost:3000/api/totalcourses")
+      .toPromise().then((res)=>{
+        var res1=res.json();
+        return res1;
+      })
+    }
+
     //Adding The Course To Total Available Course Database
     addAvailableCourse(user) {
       console.log(user);
@@ -84,6 +93,23 @@ constructor(private http:Http,private _cookieService:CookieService)
      });
  }
 
+ //Showing The Information Of User By Sending Its Id In Database
+ getuserinfo(user){
+   return this.http.post("http://localhost:3000/api/userinfo",{user})
+   .toPromise().then((res)=>{
+   return res;
+   })
+ }
+ 
+ //Sending Updated Data To Database For Saving
+ getupdateuserdata(user){
+  return  this.http.post('http://localhost:3000/api/userupdate',user)
+  .toPromise()
+  .then((res)=> {
+    return res;
+  });
+ }
+ 
    //For Login
   getlogin(data){
     var status=0;
@@ -101,10 +127,22 @@ constructor(private http:Http,private _cookieService:CookieService)
            this.userid=res1[i]._id;
             return {name:name,type_of_user:type_of_user,userid:this.userid};
           }
+          else{
+            if(res1[i].email==data.user && res1[i].password!=data.pwd){
+               status=0;
+               break;}
+            else
+               status=2;   
+          }
          }
         if(status==0)
          {
-            alert("Your credentials is wrong");
+            alert("Please enter a valid password");
+            return {name:"Wrong",type_of_user:"NULL",userid:"NULL"};
+         }
+         if(status==2)
+         {
+            alert("Please enter a valid email & password");
             return {name:"Wrong",type_of_user:"NULL",userid:"NULL"};
          }
         
