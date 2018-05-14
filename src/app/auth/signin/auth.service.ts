@@ -58,7 +58,6 @@ constructor(private http:Http,private _cookieService:CookieService)
 
     //Adding The Course To Total Available Course Database
     addAvailableCourse(user) {
-      console.log(user);
     return  this.http.post('http://localhost:3000/api/totalcourses',user)
      .toPromise()
      .then((res)=> {
@@ -66,7 +65,7 @@ constructor(private http:Http,private _cookieService:CookieService)
      });
     }
     
-//To Register Course
+//To Register Course To User Account
    registerCourse(user){
     return this.http.post('http://localhost:3000/api/addcourses',user).toPromise()
      .then((res)=>{return res})
@@ -84,7 +83,7 @@ constructor(private http:Http,private _cookieService:CookieService)
      return this.isUserLoggedIn;
    }
   
-   //For Registering User In Database
+   //For Registering (SignUp) User In Database
    getregister(user) {
     return  this.http.post('http://localhost:3000/api/signup',user)
      .toPromise()
@@ -93,7 +92,7 @@ constructor(private http:Http,private _cookieService:CookieService)
      });
  }
 
- //Showing The Information Of User By Sending Its Id In Database
+ //Showing The Information (My Profile) Of User By Sending Its Id In Database
  getuserinfo(user){
    return this.http.post("http://localhost:3000/api/userinfo",{user})
    .toPromise().then((res)=>{
@@ -101,7 +100,7 @@ constructor(private http:Http,private _cookieService:CookieService)
    })
  }
  
- //Sending Updated Data To Database For Saving
+ //Sending User Profile Updated Data To Database For Saving
  getupdateuserdata(user){
   return  this.http.post('http://localhost:3000/api/userupdate',user)
   .toPromise()

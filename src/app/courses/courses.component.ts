@@ -10,67 +10,52 @@ import { CookieService } from '../auth/cookie.service';
   providers:[ AuthenticationService ]
 })
 export class CoursesComponent implements OnInit {
-  name;
+  
   show:Boolean;
-  html:Boolean;
-  angular:Boolean;
-  node:Boolean;
-  deep:Boolean;
+  course:{course_name:String,course_description:String,course_id:String}[]=[];
+  topic=[];
+  coursename:String;
 
   constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {
     this.show=true;
-    this.html=false;
-    this.angular=false;
-    this.node=false;
-    this.deep=false;
+   }
+
+   back(){
+     this.show=true;
    }
    
-   //Button Click Function
-   html_1()
-   {
-     this.show=false;
-     this.html=true;
-   }
-   angular_1()
-   {
-     this.show=false;
-     this.angular=true;
-   }
-   node_1()
-   {
-     this.show=false;
-     this.node=true;
-   }
-   deep_1()
-   {
-     this.show=false;
-     this.deep=true;
-   }
-   back_html_1()
-   {
-     this.show=true;
-     this.html=false;
-   }
-   back_angular_1()
-   {
-     this.show=true;
-     this.angular=false;
-   }
-   back_node_1()
-   {
-     this.show=true;
-     this.node=false;
-   }
-   back_deep_1()
-   {
-     this.show=true;
-     this.deep=false;
+   showtopic(id){
+       this.show=false;
+       this._authService.total_avail_courses()
+       .then((res)=>{
+        for(let i=0;i<res.res1.length;i++){
+          if(id==res.res1[i]._id)
+             {
+               this.coursename=res.res1[i].course_name;
+               this.topic=[];
+               for(let j=0;j<res.res1[i].content.length;j++)
+                 this.topic.push(res.res1[i].content[j].topic);
+             }
+        }
+       })
    }
 
   ngOnInit() {
     if(this._cookieService.get("isLogedIn")=="yes"){
       this.router.navigate(['dashboard']);
   }
+
+  this._authService.total_avail_courses()
+  .then((res)=>{
+    for(let i=0;i<res.res1.length;i++){
+    var info={
+      course_name:res.res1[i].course_name,
+      course_description:res.res1[i].course_description,
+      course_id:res.res1[i]._id
+    }
+    this.course.push(info);
+  }
+  })
   }
 
 }

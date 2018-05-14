@@ -21,9 +21,7 @@ export class DashboardComponent implements OnInit {
   mycourseid;
   name;
   type_of_user;
-  available_courses = [];
-  instructor_name = [];
-  course_id=[];
+  available_courses:{coursename:String,instructorname:String,courseid:String,coursedescription:String}[]=[];
   check:Boolean;
   
   constructor(public _authService:AuthenticationService,private route: ActivatedRoute,private router: Router,private _cookieService:CookieService)
@@ -61,8 +59,6 @@ var uid=this._cookieService.get("userid");
            this.instructor=res.res4; 
      }) .then((res)=>{
       this.available_courses=[];
-      this.instructor_name=[];
-      this.course_id=[];
       this._authService.total_avail_courses().then((res)=>
       {
         for(let i=0;i<res.res1.length;i++)
@@ -70,9 +66,14 @@ var uid=this._cookieService.get("userid");
           for(let j=0;j<this.mycourseid.length;j++){
           if(res.res1[i]._id==this.mycourseid[j]){flag=1}}
           if(flag==0){
-       this.available_courses.push(res.res1[i].course_name);
-       this.instructor_name.push(res.res1[i].instructor_name);
-       this.course_id.push(res.res1[i]._id);}
+            var info = {
+              coursename : res.res1[i].course_name,
+              instructorname : res.res1[i].instructor_name,
+              courseid:res.res1[i]._id,
+              coursedescription:res.res1[i].course_description
+            }
+            this.available_courses.push(info);
+      }
         }
       })
      });
@@ -93,9 +94,13 @@ var uid=this._cookieService.get("userid");
         for(let j=0;j<this.mycourseid.length;j++){
         if(res.res1[i]._id==this.mycourseid[j]){flag=1}}
         if(flag==0){
-     this.available_courses.push(res.res1[i].course_name);
-     this.instructor_name.push(res.res1[i].instructor_name);
-     this.course_id.push(res.res1[i]._id);}
+     var info = {
+      coursename : res.res1[i].course_name,
+      instructorname : res.res1[i].instructor_name,
+      courseid:res.res1[i]._id,
+      coursedescription:res.res1[i].course_description
+    }
+    this.available_courses.push(info);}
       }
     })
   })

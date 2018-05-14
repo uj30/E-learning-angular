@@ -33,73 +33,23 @@
     <div class="col-12">
         
         <!-- Row -->
-        <div class="row">
+        <div>
             <!-- column -->
-            <div class="col-md-6 col-md-6"  >
+            <div class="col-md-6 col-md-6" *ngFor="let courses of course">
                 <!-- Card -->
                 <div class="card color1">
-                    <img class="card-img-top img-responsive" src="/../../assets/images/html.png" alt="Card image cap">
                     <div class="card-body">
-                        <h4 class="card-title">HTML5</h4>
-                        <p class="card-text">Beginner course on HTML5 that helps in building responsive website from<br> scratch.
+                        <h4 class="card-title style">{{courses.course_name}}</h4>
+                        <p class="card-text styling">{{courses.course_description}}
                            </p>
                            <div style="text-align:center">
-                                <button class="btn buttonback" (click)="html_1()">View Course</button></div>
+                                <button class="btn buttonback" (click)="showtopic(courses.course_id)">View Course</button></div>
                     </div>
                 </div>
-                <!-- Card -->
-            </div>
-            
-            <!-- column -->
-            <!-- column -->
-            <div class="col-lg-6 col-md-6">
-                <!-- Card -->
-                <div class="card color1">
-                    <img class="card-img-top img-responsive" src="/../../assets/images/angular.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Angularjs</h4>
-                        <p class="card-text">Learn the faster Angular 2 and its fundamentals (including TypeScript) in this Angular JS 2 tutorial.</p>
-                        <div style="text-align:center">
-                                <button class="btn buttonback" (click)="angular_1()">View Course</button></div>
-                    </div>
-                </div>
+                <br>
                 <!-- Card -->
             </div>
             </div><br><br>
-            <div class="row">
-            <!-- column -->
-            <!-- column -->
-            <div class="col-md-6 col-md-6">
-                <!-- Card -->
-                <div class="card color1">
-                    <img class="card-img-top img-responsive" src="/../../assets/images/node.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Node.js</h4>
-                        <p class="card-text">Learn JavaScript’s most popular environment & become an expert in web development with this Node.JS beginners tutorial.</p>
-                        <div style="text-align:center">
-                                <button class="btn buttonback" (click)="node_1()">View Course</button></div>
-                    </div>
-                </div>
-                <!-- Card -->
-            </div>
-            <!-- column -->
-            <!-- column -->
-            <div class="col-md-6 col-md-6">
-                <!-- Card -->
-                <div class="card color1">
-                    <img class="card-img-top img-responsive" src="/../../assets/images/deep.jpg" alt="Card image cap">
-                    <div class="card-body">
-                        <h4 class="card-title">Deep Learning</h4>
-                        <p class="card-text">A complete guide to master machine learning concepts and create real world ML<br> solutions</p>
-                        <div style="text-align:center">
-                                <button class="btn buttonback" (click)="deep_1()">View Course</button></div>
-                    </div>
-                </div>
-                <!-- Card -->
-            </div>
-            <!-- column -->
-        </div>
-        <!-- Row -->
     </div>
 </div>
 </div>
@@ -110,72 +60,10 @@
 <!-- Specific Course Details -->
 
 <div *ngIf="!show" class="container">
-    <div *ngIf="html">
-        <h1><u>HTML 5</u>
-        <button class="btn buttonback design" (click)="back_html_1()" style="float: right;">Back</button> </h1>
+        <h1><u>{{coursename}}</u>
+        <button class="btn buttonback design" (click)="back()" style="float: right;">Back</button> </h1>
        <hr> <br>
         <h3> <ul>
-            <li><p>Intoduction</p></li>
-            <li><p>Sections and outlines in HTML5</p></li>
-            <li><p>Using HTML5 audio and video</p></li>
-            <li><p>Modern form inputs</p></li>
-            <li><p>Styling forms with CSS</p></li>
-            <li><p>Using the Camera API</p></li>
-            <li><p>Understanding SVG graphics</p></li>
-            <li><p>Adding interactivity and transitions</p></li>
-            <li><p>Creating a scale and axes</p></li>
-            <li><p>Making a simple bar chart with D3</p></li>
+            <li *ngFor="let topics of topic"><p>{{topics}}</p></li>
         </ul> </h3>
-    </div>
-    <div *ngIf="angular">
-        <h1><u>ANGULAR</u>
-        <button class="btn buttonback design" (click)="back_angular_1()" style="float: right;">Back</button> </h1>
-        <hr> <br>
-        <h3> <ul>
-            <li><p>Intoduction</p></li>
-            <li><p>Static Template</p></li>
-            <li><p>Components</p></li>
-            <li><p>Directory and File Organization</p></li>
-            <li><p>Two-way Data Binding</p></li>
-            <li><p>Dependency Injection</p></li>
-            <li><p>Promise and Callbacks</p></li>
-            <li><p>Observable</p></li>
-            <li><p>Routing</p></li>
-            <li><p>Service</p></li>
-        </ul> </h3>
-    </div>
-    <div *ngIf="node">
-            <h1><u>NODE</u>
-            <button class="btn buttonback design" (click)="back_node_1()" style="float: right;">Back</button> </h1>
-            <hr> <br>
-        <h3> <ul>
-            <li><p>Intoduction</p></li>
-            <li><p>Express</p></li>
-            <li><p>Body-Parser</p></li>
-            <li><p>Require and Exports</p></li>
-            <li><p>Mongoose & Creating Connection with mongoose</p></li>
-            <li><p>User Schema</p></li>
-            <li><p>Routing</p></li>
-            <li><p>Making an API with mongoose and express</p></li>
-            <li><p>Render the data</p></li>
-            <li><p>Socket.io</p></li>
-        </ul> </h3>
-        </div>
-     <div *ngIf="deep">
-             <h1><u>DEEP LEARNING</u>
-             <button class="btn buttonback design" (click)="back_deep_1()" style="float: right;">Back</button> </h1>
-             <hr> <br>
-             <h3> <ul>
-                 <li><p>Intoduction</p></li>
-                 <li><p>Informed Search Strategies</p></li>
-                 <li><p>Knowledge Representation</p></li>
-                 <li><p>Symbolic reasoning under uncertainity</p></li>
-                 <li><p>Statical reasoning</p></li>
-                 <li><p>Weak slot and filling structures</p></li>
-                 <li><p>Strong slot and filling structures</p></li>
-                 <li><p>Game playing</p></li>
-                 <li><p>Fuzzy Logic</p></li>
-                 <li><p>Natural Language Processing</p></li>
-             </ul> </h3>
-            </div>
 </div>

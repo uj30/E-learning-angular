@@ -12,16 +12,11 @@ import { CookieService } from '../auth/cookie.service';
   providers:[ CookieService]
 })
 export class AddcourseComponent implements OnInit {
-  mycourses;
-  instructor;
-  mycourseid;
   name;
   type_of_user;
-  available_courses = [];
-  instructor_name = [];
-  course_id=[];
   
   coursename:String;
+  desc1:String;
   topic:String;
   url:String;
   desc:String;
@@ -43,8 +38,14 @@ logout(){
   this.router.navigate(['/home'])
 }
 
-//Taking CourseName And Content Of Course Into Array Of Object And Empty The Field
+//Hiding The Course Name Description
 onAdd(event:any)
+{
+  this.check=false;
+}
+
+//Taking CourseName And Content Of Course Into Array Of Object And Empty The Field
+onAdd1(event:any)
 {
   this.check=false;
   var info = {
@@ -72,10 +73,15 @@ onAddAvailableCourse(event:any)
   this.desc="";
   
   var target = event.target || event.srcElement || event.currentTarget;
-  console.log("course:",this.coursename);
-  this._authService.addAvailableCourse({course_name:this.coursename,content:this.content,instructor_name:this.name}).
+  this._authService.addAvailableCourse({course_name:this.coursename,course_description:this.desc1,content:this.content,instructor_name:this.name}).
 then((res)=>{
  var res1 = res.json();
+if(res1.msg=="Fail")
+{
+    alert("Your course is not added successfully make sure that every field is mandatory");
+    this.check=true;
+}
+    else{ 
   var cid;
   this._authService.total_avail_courses().then((res)=>{
   for(let i=0;i<res.res1.length;i++){
@@ -85,13 +91,16 @@ then((res)=>{
   }).then((res)=>{
   var uid=this._cookieService.get("userid");
 this._authService.registerCourse({userid:uid,courses:cid}).then((res)=>{
+  alert("Course Added Successfully");
   this.topic="";
   this.url="";
 this.desc="";
 this.coursename="";
+this.desc1="";
 this.check=true;
 })
   })
+}
 })
 }
 

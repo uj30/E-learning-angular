@@ -104,6 +104,7 @@ router.get('/totalcourses',function(req,res,next){
 router.post('/totalcourses',function(req,res,next){
        let newUser =new Courses({
         course_name:req.body.course_name,
+        course_description:req.body.course_description,
         instructor_name:req.body.instructor_name,
         content:req.body.content
      });

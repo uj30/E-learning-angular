@@ -7,6 +7,10 @@ const UserSchema=mongoose.Schema({
         type:String,
         required:true
     },
+    course_description:{
+        type:String,
+        require:true
+    },
     instructor_name:{
         type:String,
         required:true

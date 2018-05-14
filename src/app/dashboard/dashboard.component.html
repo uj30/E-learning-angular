@@ -68,10 +68,11 @@
                             
                         </div>
                         <ul class="list-group">
-                            <a class="list-group-item" style="cursor:pointer" *ngFor="let course of available_courses;index as i;">
-                               <h5>Course Name: <b>{{course}}</b></h5>
-                               <h5>Instructor Name: <b>{{instructor_name[i]}}</b></h5>
-                               <button class="btn btn-success" type="submit" id="{{course_id[i]}}" (click)="onAddCourse($event)">Register</button>
+                            <a class="list-group-item" style="cursor:pointer" *ngFor="let course of available_courses">
+                               <h5>Course Name: <b>{{course.coursename}}</b></h5>
+                               <h5>Course Description: <b>{{course.coursedescription}}</b></h5>
+                               <h5>Instructor Name: <b>{{course.instructorname}}</b></h5>
+                               <button class="btn btn-success" type="submit" id="{{course.courseid}}" (click)="onAddCourse($event)">Register</button>
                             </a>
                         </ul>
                     </div>
@@ -105,7 +106,7 @@
                                 <ul class="list-group">
                                     <a class="list-group-item" style="cursor:pointer" *ngFor="let mycourse of mycourses;index as i" (click)="onClick(mycourseid[i])">
                                              <h5>Course Name: <b>{{mycourse}}</b></h5>
-                                             <br><br> 
+                                             <br>
                                     </a>
                                 </ul>
                             </div>
