@@ -11,7 +11,7 @@ router.get('/login',function(req,res,next){
     })
 });
 
-//Calling The User Info By Sending Its Id
+//Calling The User Info By Sending Its Ids
 router.post('/userinfo',function(req,res,next){
     User.findOne({_id:req.body.user}, function(err,obj) 
     { 
