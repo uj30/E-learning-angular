@@ -11,13 +11,29 @@ router.get('/login',function(req,res,next){
     })
 });
 
-//Calling The User Info By Sending Its Ids
+//Calling The User Info By Sending Its Id
 router.post('/userinfo',function(req,res,next){
     User.findOne({_id:req.body.user}, function(err,obj) 
     { 
         res.json(obj);
      });
 })
+
+//cc
+router.post('/checkemail', (req, res) => {
+    // console.log("Hi",req.body);
+    User.findOne({email: req.body.email }).then((res1) => {
+      return res.json(res1);
+    });
+  });
+
+  router.post("/resetpassword", (req, res) => {
+    // console.log("hi",req.body.data.id);
+    User.findByIdAndUpdate({_id:req.body.data.id},{ $set:{password:req.body.data.password}}).then(() => {
+        return res.status(200).send("ok");
+      
+    })
+  })
 
 //Updating The User Data
 router.post('/userupdate',function(req,res,next){

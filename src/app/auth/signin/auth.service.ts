@@ -36,6 +36,27 @@ constructor(private http:Http,private _cookieService:CookieService)
       return {res2,res3,res4};
       })
        }
+
+       //cc
+       checkemail(email){
+        return  this.http.post('http://localhost:3000/api/checkemail',{email})
+        .toPromise().then((res)=>{
+          var res1=res.json();
+          if(res1==null)
+          alert("Please enter a registered email");
+          else
+          return res1;
+        })
+    }
+
+    //cc
+    resetpassword(data){
+      return this.http.post('http://localhost:3000/api/resetpassword',{data})
+      .toPromise().then((res)=>{
+          console.log(res.status);
+          return res;
+      })
+  }
   
    // Getting Total Available Courses
     total_avail_courses(){

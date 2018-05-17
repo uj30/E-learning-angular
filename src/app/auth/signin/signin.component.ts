@@ -16,7 +16,20 @@ export class SigninComponent implements OnInit {
   name1: string;
   type_of_user:string;
   userid:string;
+  show:Boolean
+  show1:Boolean
+  show2:Boolean
+
+  registerUserData={
+    password:'',
+    email:''
+  }
+  id:string
+
   constructor(public _authService:AuthenticationService,private router: Router,private _cookieService:CookieService) {  
+   this.show=true;
+   this.show1=false;
+   this.show2=false
   }
   
   //Function for Checking Credentials
@@ -39,6 +52,41 @@ getLogin()
   }
   });
  
+}
+
+
+forgotpassword()
+{
+  this.show=false
+  this.show1=true
+}
+
+getpasswordchange(){
+   this.show=false
+   this._authService.checkemail(this.registerUserData.email).then((res)=>{ 
+    if(res._id)
+{  this.id=res._id
+   this.show1=false
+  this.show2=true
+}
+else{
+  this.show1=true
+  this.show2=false
+}
+   })
+}
+
+getLogin1(){
+this._authService.resetpassword({password:this.registerUserData.password,id:this.id}).then((res)=>{
+ alert("Your password has been successfully updated!")
+this.show=true;
+this.show1=false;
+this.show2=false;
+this.registerUserData={
+  email:'',
+  password:''
+}
+})
 }
 
   ngOnInit() {
